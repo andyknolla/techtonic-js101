@@ -22,9 +22,7 @@ var library = {
   ],
 
   addBook: function(title, author, pages, yearPublished) {
-    // TODO check if this book is already in library
     for (var i = 0; i < this.books.length; i++) {
-
       if (this.books[i].title === title) {
         console.log("Library already contains that title")
         return false;
@@ -48,7 +46,7 @@ var library = {
     return false;
   },
 
-  removeBookByAuthor: function(author) {
+  removeBooksByAuthor: function(author) {
     var libraryInitialLength = this.books.length;
     for (var i = 0; i < this.books.length; i++) {
       if(this.books[i].author === author) {
@@ -101,12 +99,12 @@ var library = {
   },
 
   addBooks: function(arrayOfBooks) {
-    var numbBooksAdded = 0;
+    var numBooksAdded = 0;
     for (var i = 0; i < arrayOfBooks.length; i++) {
       this.books.push(arrayOfBooks[i])
-      numbBooksAdded +=1;
+      numBooksAdded +=1;
     }
-    console.log(numbBooksAdded, 'books added');
+    console.log(numBooksAdded, 'books added');
   },
 
   getAuthors: function() {
@@ -116,7 +114,7 @@ var library = {
         authors.push(this.books[i].author)
       }
     }
-    console.log(authors);
+    console.log('authors',authors);
   },
 
   getRandomAuthorName: function() {
