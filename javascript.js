@@ -4,9 +4,10 @@ function Book(title, author, pages, yearPublished) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.date = new Date(yearPublished, 0,1);
+    this.PublishDate = new Date(yearPublished, 0,1);
 };
 
+// var library = localStorage.library;
 var library = {
   books: [
     new Book (
@@ -14,6 +15,12 @@ var library = {
       'Marjin Haverbeke',
       300,
       2013
+    ),
+    new Book (
+      'JavaScript & jQuery',
+      'Jon Duckett',
+      348,
+      2014
     )
   ],
   //
@@ -33,34 +40,33 @@ var library = {
 
 
   checkBooksByTitle: function(title, list) {
-    list.forEach(function(book) {
-      if(book.title === title) {
+    for (var i = 0; i < list.length; i++) {
+      if(list[i].title === title) {
         console.log('title check positive ');
-        return false;
-      } else {
-        console.log('title check neg ');
         return true;
       }
-    })
-
+      console.log('title check negative');
+      return false;
+    }
   },
 
   addBook: function(title, author, pages, yearPublished) {
     // TODO check if this book is already in library
-    if (this.checkBooksByTitle(title, this.books)) {
-      console.log("Library already contains that title")
-      return false;
-    } else {
-      this.books.push(
-        new Book(title, author, pages, yearPublished)
-      )
-      return true;
+    for (var i = 0; i < this.books.length; i++) {
+
+      if (this.books[i].title === title) {
+        console.log("Library already contains that title")
+        return false;
+      }
     }
+    this.books.push(
+      new Book(title, author, pages, yearPublished)
+    )
+      return true;
   },
 
-  removerBookByTitle: function(title) {
+  removeBookByTitle: function(title) {
     for (var i = 0; i < this.books.length; i++) {
-      console.log(this.books[i].title);
       if(this.books[i].title === title) {
         this.books.splice(i, 1);
         console.log(title, 'removed from library');
@@ -73,13 +79,13 @@ var library = {
       return false;
   },
 
-  removerBookByAuthor: function(author) {
+  removeBookByAuthor: function(author) {
     var libraryInitialLength = this.books.length;
 
     for (var i = 0; i < this.books.length; i++) {
       if(this.books[i].author === author) {
         this.books.splice(i, 1);
-        console.log('Books by ', author, 'removed from library');
+        console.log('Books by', author, 'removed from library');
       } else {
         continue;
       }
@@ -96,17 +102,13 @@ var library = {
       if(this.books.length === 0) {
         console.log(null, '...There aren\'t any books')
       } else {
-        for (var i = 0; i < match.length != 0; i++) {
-          var random = Math.floor(Math.random * 10);
-          if(random === 5) {
-            console.log(this.books[i]);
-            match +=1;
-          }
-        }
+        var random = Math.floor(Math.random() * this.books.length);
+        console.log("Here's a random book...", this.books[random]);
       }
+    return;
   },
 
-  getBooksByTitle: function(title) {
+  getBookByTitle: function(title) {
     //TODO split title into individual words, push into an array
     var titleWords = title.split(' ')
     var match = [];
@@ -122,12 +124,13 @@ var library = {
   },
 
   getBooksByAuthor: function (authorName) {
-    var authorNameComponents = autorName.split(' ')
+    var authorNameComponents = authorName.split(' ')
+    console.log(authorNameComponents);
     var match = [];
     // for each item in that array, loop through books and check if this.books[i].title includes it
     for (var i = 0; i < authorNameComponents.length; i++) {
       for (var j = 0; j < this.books.length; j++) {
-        if( this.books[j].title.includes(authorNameComponents[i]) ) {
+        if( this.books[j].author.includes(authorNameComponents[i]) ) {
           match.push(this.books[j]);
         }
       }
@@ -141,7 +144,7 @@ var library = {
       this.books.push(arrayOfBooks[i])
       numbBooksAdded +=1;
     }
-    console.log(numbBooksAdded);
+    console.log(numbBooksAdded, 'books added');
   },
 
   getAuthors: function() {
@@ -155,10 +158,14 @@ var library = {
   },
 
   getRandomAuthorName: function() {
+    var match = 0;
     if(this.books.length === 0) {
       console.log(null, ' No books in library')
     } else {
-
+        var random = Math.floor(Math.random() * this.books.length);
+        console.log('random = ',random);
+        console.log(this.books[random].author);
     }
-  }
+      return;
+    }
 }
