@@ -1,5 +1,3 @@
-console.log("hello world");
-
 function Book(title, author, pages, yearPublished) {
     this.title = title;
     this.author = author;
@@ -7,7 +5,6 @@ function Book(title, author, pages, yearPublished) {
     this.PublishDate = new Date(yearPublished, 0,1);
 };
 
-// var library = localStorage.library;
 var library = {
   books: [
     new Book (
@@ -23,32 +20,6 @@ var library = {
       2014
     )
   ],
-  //
-  //   new Book {
-  //     title: 'Javascript the Good Parts',
-  //     author: 'Douglas Crockford',
-  //     numberOfPages: 200,
-  //     publishDate: new Date(2009,0,1)
-  //   },
-  //   {
-  //     title: 'HTML and CSS',
-  //     author: 'Marjin Haverbeke',
-  //     numberOfPages: 500,
-  //     publishDate: new Date(2014,0,1)
-  //   }
-  // ],
-
-
-  checkBooksByTitle: function(title, list) {
-    for (var i = 0; i < list.length; i++) {
-      if(list[i].title === title) {
-        console.log('title check positive ');
-        return true;
-      }
-      console.log('title check negative');
-      return false;
-    }
-  },
 
   addBook: function(title, author, pages, yearPublished) {
     // TODO check if this book is already in library
@@ -71,48 +42,41 @@ var library = {
         this.books.splice(i, 1);
         console.log(title, 'removed from library');
         return true;
-      } else {
-        continue;
       }
     }
-      console.log('Title not found');
-      return false;
+    console.log('Title not found');
+    return false;
   },
 
   removeBookByAuthor: function(author) {
     var libraryInitialLength = this.books.length;
-
     for (var i = 0; i < this.books.length; i++) {
       if(this.books[i].author === author) {
         this.books.splice(i, 1);
         console.log('Books by', author, 'removed from library');
-      } else {
-        continue;
       }
     }
     if(this.books.length < libraryInitialLength) {
       return true;
     } else
-      console.log('Author nor found')
+      console.log('Author not found')
       return false;
   },
 
   getRandomBook: function() {
-      var match = 0;
-      if(this.books.length === 0) {
-        console.log(null, '...There aren\'t any books')
-      } else {
-        var random = Math.floor(Math.random() * this.books.length);
-        console.log("Here's a random book...", this.books[random]);
-      }
+    var match = 0;
+    if(this.books.length === 0) {
+      console.log(null, '...There aren\'t any books')
+    } else {
+      var random = Math.floor(Math.random() * this.books.length);
+      console.log("Here's a random book...", this.books[random]);
+    }
     return;
   },
 
   getBookByTitle: function(title) {
-    //TODO split title into individual words, push into an array
     var titleWords = title.split(' ')
     var match = [];
-    // for each item in that array, loop through books and check if this.books[i].title includes it
     for (var i = 0; i < titleWords.length; i++) {
       for (var j = 0; j < this.books.length; j++) {
         if( this.books[j].title.includes(titleWords[i]) ) {
@@ -125,9 +89,7 @@ var library = {
 
   getBooksByAuthor: function (authorName) {
     var authorNameComponents = authorName.split(' ')
-    console.log(authorNameComponents);
     var match = [];
-    // for each item in that array, loop through books and check if this.books[i].title includes it
     for (var i = 0; i < authorNameComponents.length; i++) {
       for (var j = 0; j < this.books.length; j++) {
         if( this.books[j].author.includes(authorNameComponents[i]) ) {
@@ -162,9 +124,8 @@ var library = {
     if(this.books.length === 0) {
       console.log(null, ' No books in library')
     } else {
-        var random = Math.floor(Math.random() * this.books.length);
-        console.log('random = ',random);
-        console.log(this.books[random].author);
+      var random = Math.floor(Math.random() * this.books.length);
+      console.log(this.books[random].author);
     }
       return;
     }
