@@ -18,7 +18,14 @@ var library = {
       'Jon Duckett',
       348,
       2014
-    )
+    ),
+    new Book (
+      'JavaScript the Good Parts',
+      'Douglas Crockford',
+      348,
+      20
+    ),
+
   ],
 
   addBook: function(title, author, pages, yearPublished) {
@@ -69,7 +76,7 @@ var library = {
       var random = Math.floor(Math.random() * this.books.length);
       console.log("Here's a random book...", this.books[random]);
     }
-    return;
+    return false;
   },
 
   getBookByTitle: function(title) {
@@ -115,6 +122,7 @@ var library = {
       }
     }
     console.log('authors',authors);
+    return true;
   },
 
   getRandomAuthorName: function() {
@@ -122,9 +130,8 @@ var library = {
     if(this.books.length === 0) {
       console.log(null, ' No books in library')
     } else {
-      var random = Math.floor(Math.random() * this.books.length);
-      console.log(this.books[random].author);
+      var random = this.books[Math.floor(Math.random() * this.books.length)];
     }
-      return;
+      return random;
     }
 }
