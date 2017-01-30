@@ -1,0 +1,31 @@
+{
+  "name": "101_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "javascript.js",
+  "dependencies": {
+    "autoprefixer": "^6.7.0",
+    "babel": "^6.5.2",
+    "babel-core": "^6.22.1",
+    "babel-preset-es2015": "^6.22.0",
+    "css-mqpacker": "^5.0.1",
+    "cssnano": "^3.10.0",
+    "gulp-postcss": "^6.3.0",
+    "gulp-sass": "^3.1.0",
+    "postcss-assets": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andyknolla/techtonic-js101.git"
+  },
+  "author": "Andy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andyknolla/techtonic-js101/issues"
+  },
+  "homepage": "https://github.com/andyknolla/techtonic-js101#readme"
+}

@@ -1,0 +1,9 @@
+body {
+  background: lightgray;
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif; }
+  body .dirka {
+    color: red; }
+
+li {
+  padding-bottom: 12px; }
